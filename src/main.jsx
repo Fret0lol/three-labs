@@ -8,6 +8,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Gradient from './Gradient'
 import Planet from './Planet'
 import Particles from './Particles'
+import FBOParticles from './FBOParticles'
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: "/04",
     element: <Particles />
+  },
+  {
+    path: "/05",
+    element: <FBOParticles />
   }
 ])
 
