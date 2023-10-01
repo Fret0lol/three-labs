@@ -9,6 +9,7 @@ import Gradient from './Gradient'
 import Planet from './Planet'
 import Particles from './Particles'
 import FBOParticles from './FBOParticles'
+import Vaporwave from './Vaporwave'
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: "/05",
     element: <FBOParticles />
+  },
+  {
+    path: "/06",
+    element: <Vaporwave />
   }
 ])
 
