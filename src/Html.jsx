@@ -7,7 +7,7 @@ export default function Html() {
       <nav>
         <ul>
           <li>
-            <NavLink to={`01`} className={({isActive}) => (isActive ? "active" : null)}>01 - Blob</NavLink>
+            <NavLink to={`/`} className={({isActive}) => (isActive ? "active" : null)}>01 - Blob</NavLink>
           </li>
           <li>
             <NavLink to={`02`} className={({isActive}) => (isActive ? "active" : null)}>02 - Kynetic Typo</NavLink>

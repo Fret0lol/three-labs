@@ -1,11 +1,11 @@
-# Kinetic Type Tutorial (Github Universe 2020)
-Kinetic Type with Threejs Tutorial for Github Universe
+# Three Labs
+Experimental Three.js / React Three laboratory
 
-![Kinetic Type Tutorial](https://raw.githubusercontent.com/marioecg/github-universe-2020-tutorial/main/src/assets/repo-image.png)
+![Preview](image.png)
 
 ## Installation
 
-The repository bundles the files using [Parcel](https://parceljs.org/), so make sure you have [Node](https://nodejs.org/en/) installed before running the next commands:
+The repository bundles the files using [Vite](https://vitejs.dev/), so make sure you have [Node](https://nodejs.org/en/) installed before running the next commands:
 
 Install the dependencies:
 
@@ -16,7 +16,7 @@ npm install
 Run the code and start a local server:
 
 ```
-npm run start
+npm run dev
 ```
 
 Create a build of the code:
@@ -26,8 +26,7 @@ npm run build
 ```
 ## Credits
 
-- [Shawn Lawson's The Force](https://github.com/shawnlawson/The_Force)
-- [Create a Scene with Three.js](https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene)
+- [Maxime Heckel's Blog](https://blog.maximeheckel.com/posts/the-magical-world-of-particles-with-react-three-fiber-and-shaders/)
 - [The Book of Shaders](https://thebookofshaders.com/glossary/)
 
 ## Going further
@@ -37,4 +36,4 @@ npm run build
 
 ## Misc
 
-Follow *@marioecg*: [Twitter](https://twitter.com/marioecg), [Instagram](https://www.instagram.com/marioecg/)
+Follow *@Fret0lol*: [Twitter](https://twitter.com/Fret0lol)
