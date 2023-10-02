@@ -1,15 +1,26 @@
-import {useFrame} from "@react-three/fiber";
-import { useControls } from "leva";
+import {OrbitControls} from "@react-three/drei";
+import {useFrame, useThree} from "@react-three/fiber";
+import {useControls} from "leva";
 import {useMemo, useRef} from "react";
+import { Vector3 } from "three";
 
 export default function Blob() {
 	const mesh = useRef();
-	const hover = useRef(false);
 
-  // Leva
-  const { intensity } = useControls('Mesh', {
-    intensity: { value: 0.3, min: 0, max: 10}
-  })
+  const { camera } = useThree()
+  camera.position.set(0, 0, 5)
+
+	// Leva
+	const {intensity} = useControls("Mesh", {
+		intensity: {
+			value: 0.3,
+			min: 0,
+			max: 10,
+			onChange: (value) => {
+				uniforms.uIntensity.value = value;
+			},
+		},
+	});
 
 	// Shaders
 	const uniforms = useMemo(
@@ -24,14 +35,16 @@ export default function Blob() {
 		const time = state.clock.getElapsedTime();
 
 		mesh.current.material.uniforms.uTime.value = time * 0.4;
-    mesh.current.material.uniforms.uIntensity.value = intensity
 	});
 
 	return (
-		<mesh ref={mesh} onPointerOver={() => (hover.current = true)} onPointerOut={() => (hover.current = false)}>
-			<icosahedronGeometry args={[2, 20]} />
-			<shaderMaterial vertexShader={vertexShader} fragmentShader={fragmentShader} uniforms={uniforms} />
-		</mesh>
+		<>
+			<OrbitControls enableDamping />
+			<mesh ref={mesh}>
+				<icosahedronGeometry args={[2, 20]} />
+				<shaderMaterial vertexShader={vertexShader} fragmentShader={fragmentShader} uniforms={uniforms} />
+			</mesh>
+		</>
 	);
 }
 

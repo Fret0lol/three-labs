@@ -1,11 +1,14 @@
 import { OrbitControls, useTexture } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
-import { NearestFilter } from "three";
+import { DoubleSide, NearestFilter, Vector3 } from "three";
 
 export default function KineticTypo() {
 
   const mesh = useRef()
+
+  const { camera } = useThree()
+  camera.position.set(0, -5, 7)
 
   // Load the texture
   const texture = useTexture("./text.png")
@@ -29,6 +32,7 @@ export default function KineticTypo() {
     <mesh ref={ mesh }>
       <torusGeometry args={[ 3, 1, 100, 100]} />
       <shaderMaterial 
+        side={DoubleSide}
         vertexShader={ vertexShader }
         fragmentShader={ fragmentShader }
         uniforms={ uniforms }

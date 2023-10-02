@@ -1,52 +1,65 @@
-import {useFrame} from "@react-three/fiber";
-import { useControls } from "leva";
+import {useFrame, useThree} from "@react-three/fiber";
+import {useControls} from "leva";
 import {useCallback, useEffect, useMemo, useRef} from "react";
-import { Color, Vector2 } from "three";
+import {Color, Vector2} from "three";
 
 export default function Gradient() {
 	const mesh = useRef();
-  const mousePosition = useRef({ x: 0, y: 0 })
+	const mousePosition = useRef({x: 0, y: 0});
 
-  // Récupération des coordonnées de la souris
-  const updateMousePosition = useCallback((e) => {
-    mousePosition.current = { x: e.pageX, y: e.pageY }
-  }, [])
+  const { camera } = useThree()
+  console.log("display");
+  camera.position.set(0, 0, 5)
+  camera.rotation.set(0, 0, 0)
 
-  // Leva
-  const { intensity } = useControls('Mesh', {
-    intensity: { value: 0.3, min: 0, max: 10}
-  })
+	// Récupération des coordonnées de la souris
+	const updateMousePosition = useCallback((e) => {
+		mousePosition.current = {x: e.pageX, y: e.pageY};
+	}, []);
+
+	// Leva
+	const {intensity, background, colorA, colorB} = useControls("Mesh", {
+		intensity: {value: 0.3, min: 0, max: 10},
+		background: {value: "#A1A3F7"},
+		colorA: {value: "#9FBAF9"},
+		colorB: {value: "#FEB3D9"},
+	});
 
 	// Shaders
 	const uniforms = useMemo(
 		() => ({
 			uTime: {value: 0},
 			uMouse: {value: new Vector2(0, 0)},
-      uBg: { value: new Color("#A1A3F7") },
-      uColorA: { value: new Color("#9FBAF9")},
-      uColorB: { value: new Color("#FEB3D9")}
+			uBg: {value: new Color("#A1A3F7")},
+			uColorA: {value: new Color("#9FBAF9")},
+			uColorB: {value: new Color("#FEB3D9")},
 		}),
 		[]
 	);
 
-  useEffect(() => {
-    window.addEventListener("mousemove", updateMousePosition, false)
+	useEffect(() => {
+		window.addEventListener("mousemove", updateMousePosition, false);
 
-    return () => {
-      window.removeEventListener("mousemove", updateMousePosition, false)
-    }
-  }, [ updateMousePosition ])
+		return () => {
+			window.removeEventListener("mousemove", updateMousePosition, false);
+		};
+	}, [updateMousePosition]);
 
 	useFrame((state) => {
 		const time = state.clock.getElapsedTime();
 
-		mesh.current.material.uniforms.uTime.value = time * 0.4;
-    mesh.current.material.uniforms.uMouse.value = new Vector2(mousePosition.current.x, mousePosition.current.y)
+		mesh.current.material.uniforms.uTime.value = time * intensity;
+		mesh.current.material.uniforms.uMouse.value = new Vector2(mousePosition.current.x, mousePosition.current.y);
+
+		// Leva
+		mesh.current.material.uniforms.uBg.value = new Color(background);
+		mesh.current.material.uniforms.uColorA.value = new Color(colorA);
+		mesh.current.material.uniforms.uColorB.value = new Color(colorB);
 	});
 
 	return (
 		<mesh ref={mesh}>
-			<planeGeometry args={[1, 1, 32, 32]} />
+			<planeGeometry args={[5, 5, 32, 32]} />
 			<shaderMaterial vertexShader={vertexShader} fragmentShader={fragmentShader} uniforms={uniforms} />
 		</mesh>
 	);
@@ -66,7 +79,7 @@ const vertexShader = /* glsl */ `
 
     gl_Position = projectedPosition;
   }
-`
+`;
 
 const fragmentShader = /* glsl */ `
   uniform float uTime;
@@ -78,7 +91,7 @@ const fragmentShader = /* glsl */ `
 
   varying vec2 vUv;
 
-/* 
+  /* 
   Description : Array and textureless GLSL 2D simplex noise function.
   Author : Ian McEwan, Ashima Arts.
   Maintainer : ijm
@@ -87,23 +100,23 @@ const fragmentShader = /* glsl */ `
             Distributed under the MIT License. See LICENSE file.
             https://github.com/ashima/webgl-noise
 
-https://github.com/hughsk/glsl-noise/blob/master/simplex/2d.glsl
-*/
+  https://github.com/hughsk/glsl-noise/blob/master/simplex/2d.glsl
+  */
 
-vec3 mod289(vec3 x) {
-  return x - floor(x * (1.0 / 289.0)) * 289.0;
+  vec3 mod289(vec3 x) {
+    return x - floor(x * (1.0 / 289.0)) * 289.0;
+  }
+
+  vec2 mod289(vec2 x) {
+    return x - floor(x * (1.0 / 289.0)) * 289.0;
+  }
+
+  vec3 permute(vec3 x) {
+    return mod289(((x*34.0)+1.0)*x);
 }
 
-vec2 mod289(vec2 x) {
-  return x - floor(x * (1.0 / 289.0)) * 289.0;
-}
-
-vec3 permute(vec3 x) {
-  return mod289(((x*34.0)+1.0)*x);
-}
-
-float snoise(vec2 v) {
-  const vec4 C = vec4(0.211324865405187,  // (3.0-sqrt(3.0))/6.0
+  float snoise(vec2 v) {
+    const vec4 C = vec4(0.211324865405187,  // (3.0-sqrt(3.0))/6.0
                       0.366025403784439,  // 0.5*(sqrt(3.0)-1.0)
                      -0.577350269189626,  // -1.0 + 2.0 * C.x
                       0.024390243902439); // 1.0 / 41.0

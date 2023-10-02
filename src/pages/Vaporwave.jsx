@@ -1,7 +1,8 @@
-import {OrbitControls, SpotLight, useHelper, useTexture} from "@react-three/drei";
-import {useFrame} from "@react-three/fiber";
-import {useRef} from "react";
+import {OrbitControls, PerspectiveCamera, SpotLight, useHelper, useTexture} from "@react-three/drei";
+import {useFrame, useThree} from "@react-three/fiber";
+import {useEffect, useRef} from "react";
 import { Object3D, SpotLightHelper, Vector3 } from "three";
+import { Bloom, DepthOfField, EffectComposer } from "@react-three/postprocessing"
 
 export default function Vaporwave() {
 	const plane = useRef();
@@ -19,8 +20,6 @@ export default function Vaporwave() {
 	const displacementTexture = useTexture("./displacement.png");
   const metalnessTexture = useTexture("./metalness.png")
 
-  useHelper(spotlight, SpotLightHelper, 'blue')
-  useHelper(spotLight2, SpotLightHelper, 'red')
 
 	useFrame((state) => {
 		const time = state.clock.getElapsedTime();
@@ -39,9 +38,11 @@ export default function Vaporwave() {
 
 	return (
 		<>
+			<color attach={"background"} args={["#000000"]} />
 			<OrbitControls enableDamping />
+			<PerspectiveCamera makeDefault position={[0, 0.06, 1.1]} fov={75} near={0.01} far={20} />
 
-			<ambientLight intensity={10} />
+			<ambientLight intensity={100} />
       <spotLight 
         ref={spotlight}
         color={"#D53C3D"}
@@ -72,6 +73,11 @@ export default function Vaporwave() {
 				<planeGeometry args={[1, 2, 24, 24]} />
 				<meshStandardMaterial color={"#FFFFFF"} map={texture} displacementMap={displacementTexture} displacementScale={0.4} metalnessMap={metalnessTexture} metalness={0.96} roughness={0.5} />
 			</mesh>
+
+			<EffectComposer>
+				<DepthOfField bokehScale={2} height={480} />
+				<Bloom intensity={0.2} luminanceThreshold={0.8} luminanceSmoothing={0} />
+			</EffectComposer>
 		</>
 	);
 }

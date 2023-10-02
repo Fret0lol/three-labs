@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap');
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -15,54 +17,38 @@
 }
 html,
 body,
-#root,
-canvas {
-  margin: 0;
-  height: 100vh;
+#root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+.html {
+  z-index: 2;
+  padding: 1rem 2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
-a:hover {
-  color: #535bf2;
+ul {
+  list-style: none;
 }
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+ul a {
+  font-family: 'Source Code Pro', monospace;
+  text-decoration: none;
+  color: #FFFFFF;
+  flex: 1;
   font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+  line-height: 1.2;
+  background-image: linear-gradient(to right, white 0, white 100%);
+  background-position: 0 -0.2em;
+  background-size: 0 100%;
+  background-repeat: no-repeat;
+  transition: background 0.5s;
 }
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+a.active,
+ul a:hover {
+  background-size: 100% 100%;
+  color: black;
 }

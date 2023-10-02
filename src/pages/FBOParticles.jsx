@@ -3,7 +3,7 @@ import { createPortal, extend, useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import { FloatType, NearestFilter, RGBAFormat, Scene, OrthographicCamera, AdditiveBlending } from "three";
 
-import SimulationMaterial from "./SimulationMaterial";
+import SimulationMaterial from "../SimulationMaterial";
 extend({ SimulationMaterial })
 
 export default function FBOParticles() {
