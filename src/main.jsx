@@ -9,6 +9,7 @@ import FBOParticles from './pages/FBOParticles'
 import Vaporwave from './pages/Vaporwave'
 import App from './App'
 import Blob from './pages/Blob'
+import PointBlob from './pages/PointBlob'
 import Particles from './pages/Particles'
 
 const router = createBrowserRouter([
@@ -45,7 +46,11 @@ const router = createBrowserRouter([
       {
         path: "/07",
         element: <Vaporwave />
-      }
+      },
+      {
+        path: "/08",
+        element: <PointBlob />
+      },
     ]
   }, 
 ])
