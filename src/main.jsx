@@ -11,6 +11,7 @@ import App from './App'
 import Blob from './pages/Blob'
 import PointBlob from './pages/PointBlob'
 import Particles from './pages/Particles'
+import Dispersion from './pages/Dispersion'
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
         path: "/08",
         element: <PointBlob />
       },
+      {
+        path: "09",
+        element: <Dispersion />
+      }
     ]
   }, 
 ])

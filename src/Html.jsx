@@ -30,6 +30,9 @@ export default function Html() {
           <li>
             <NavLink to={`08`} className={({isActive}) => (isActive ? "active" : null)}>08 - Point Blob</NavLink>
           </li>
+          <li>
+            <NavLink to={`09`} className={({isActive}) => (isActive ? "active" : null)}>09 - Dispersion</NavLink>
+          </li>
         </ul>
       </nav>
     </div>
