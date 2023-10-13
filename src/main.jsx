@@ -12,6 +12,8 @@ import Blob from './pages/Blob'
 import PointBlob from './pages/PointBlob'
 import Particles from './pages/Particles'
 import Dispersion from './pages/Dispersion'
+import TextOutline from './pages/TextOutline'
+import SpherePillards from './pages/SpherePillards'
 
 const router = createBrowserRouter([
   {
@@ -53,8 +55,16 @@ const router = createBrowserRouter([
         element: <PointBlob />
       },
       {
-        path: "09",
+        path: "/09",
         element: <Dispersion />
+      },
+      {
+        path: "/10",
+        element: <TextOutline />
+      },
+      {
+        path: "/11",
+        element: <SpherePillards />
       }
     ]
   }, 

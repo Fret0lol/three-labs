@@ -33,6 +33,12 @@ export default function Html() {
           <li>
             <NavLink to={`09`} className={({isActive}) => (isActive ? "active" : null)}>09 - Dispersion</NavLink>
           </li>
+          <li>
+            <NavLink to={`10`} className={({isActive}) => (isActive ? "active" : null)}>10 - Text Outline</NavLink>
+          </li>
+          <li>
+            <NavLink to={`11`} className={({isActive}) => (isActive ? "active" : null)}>10 - Sphere Pillards</NavLink>
+          </li>
         </ul>
       </nav>
     </div>
