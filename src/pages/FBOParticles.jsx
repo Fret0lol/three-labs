@@ -1,5 +1,5 @@
 import { OrbitControls, useFBO } from "@react-three/drei";
-import { createPortal, extend, useFrame } from "@react-three/fiber";
+import { Canvas, createPortal, extend, useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import { FloatType, NearestFilter, RGBAFormat, Scene, OrthographicCamera, AdditiveBlending } from "three";
 
@@ -7,6 +7,12 @@ import SimulationMaterial from "../SimulationMaterial";
 extend({ SimulationMaterial })
 
 export default function FBOParticles() {
+  return <Canvas dpr={[1, 2]}>
+    <FBOParticlesComponent />
+  </Canvas>
+}
+
+function FBOParticlesComponent() {
   const size = 128
 
   const points = useRef()

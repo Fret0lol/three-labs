@@ -1,15 +1,16 @@
 import { Canvas } from '@react-three/fiber'
 import Html from './Html'
 import { Outlet } from 'react-router-dom'
+import { Suspense } from 'react'
 
 function App() {
 
   return (
     <>
       <Html />
-      <Canvas camera={{ position: [ 0, 0, 6 ]}} dpr={[1, 2]}>
+      <Suspense fallback={null}>
         <Outlet />
-      </Canvas>
+      </Suspense>
     </>
   )
 }

@@ -1,16 +1,17 @@
-import {useFrame, useThree} from "@react-three/fiber";
+import {Canvas, useFrame, useThree} from "@react-three/fiber";
 import {useControls} from "leva";
 import {useCallback, useEffect, useMemo, useRef} from "react";
 import {Color, Vector2} from "three";
 
 export default function Gradient() {
+  return <Canvas camera={{ position: [0, 0, 5]}} dpr={[1, 2]}>
+    <GradientComponent />
+  </Canvas>
+}
+
+function GradientComponent() {
 	const mesh = useRef();
 	const mousePosition = useRef({x: 0, y: 0});
-
-  const { camera } = useThree()
-  console.log("display");
-  camera.position.set(0, 0, 5)
-  camera.rotation.set(0, 0, 0)
 
 	// Récupération des coordonnées de la souris
 	const updateMousePosition = useCallback((e) => {

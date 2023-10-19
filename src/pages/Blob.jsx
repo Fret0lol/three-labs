@@ -1,14 +1,19 @@
 import {OrbitControls} from "@react-three/drei";
-import {useFrame, useThree} from "@react-three/fiber";
+import {useFrame, useThree, Canvas} from "@react-three/fiber";
 import {useControls} from "leva";
 import {useMemo, useRef} from "react";
-import { Vector3 } from "three";
+import {Vector3} from "three";
 
 export default function Blob() {
-	const mesh = useRef();
+  return <>
+    <Canvas camera={{ position: [0, 0, 5]}} dpr={[1, 2]}>
+      <BlobItem />
+    </Canvas>
+  </>
+}
 
-  const { camera } = useThree()
-  camera.position.set(0, 0, 5)
+function BlobItem() {
+	const mesh = useRef();
 
 	// Leva
 	const {intensity} = useControls("Mesh", {
@@ -39,11 +44,11 @@ export default function Blob() {
 
 	return (
 		<>
-			<OrbitControls enableDamping />
-			<mesh ref={mesh}>
-				<icosahedronGeometry args={[2, 20]} />
-				<shaderMaterial vertexShader={vertexShader} fragmentShader={fragmentShader} uniforms={uniforms} />
-			</mesh>
+				<OrbitControls enableDamping />
+				<mesh ref={mesh}>
+					<icosahedronGeometry args={[2, 20]} />
+					<shaderMaterial vertexShader={vertexShader} fragmentShader={fragmentShader} uniforms={uniforms} />
+				</mesh>
 		</>
 	);
 }

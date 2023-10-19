@@ -16,7 +16,7 @@ export default function Html() {
             <NavLink to={`03`} className={({isActive}) => (isActive ? "active" : null)}>03 - Gradient</NavLink>
           </li>
           <li>
-            <NavLink to={`04`} className={({isActive}) => (isActive ? "active" : null)}>04 - Neptune (Bugged)</NavLink>
+            <NavLink to={`04`} className={({isActive}) => (isActive ? "active" : null)}>04 - Neptune</NavLink>
           </li>
           <li>
             <NavLink to={`05`} className={({isActive}) => (isActive ? "active" : null)}>05 - Particles</NavLink>
@@ -30,15 +30,18 @@ export default function Html() {
           <li>
             <NavLink to={`08`} className={({isActive}) => (isActive ? "active" : null)}>08 - Point Blob</NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink to={`09`} className={({isActive}) => (isActive ? "active" : null)}>09 - Dispersion</NavLink>
           </li>
           <li>
             <NavLink to={`10`} className={({isActive}) => (isActive ? "active" : null)}>10 - Text Outline</NavLink>
           </li>
           <li>
-            <NavLink to={`11`} className={({isActive}) => (isActive ? "active" : null)}>10 - Sphere Pillards</NavLink>
-          </li>
+            <NavLink to={`11`} className={({isActive}) => (isActive ? "active" : null)}>10 - Sphere Pillards</NavLink> */}
+          {/* </li> */}
+          {/* <li>
+            <NavLink to={`12`} className={({isActive}) => (isActive ? "active" : null)}>09 - Donut</NavLink>
+          </li> */}
         </ul>
       </nav>
     </div>

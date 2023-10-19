@@ -14,6 +14,7 @@ import Particles from './pages/Particles'
 import Dispersion from './pages/Dispersion'
 import TextOutline from './pages/TextOutline'
 import SpherePillards from './pages/SpherePillards'
+import Donut from './pages/Donut'
 
 const router = createBrowserRouter([
   {
@@ -54,18 +55,22 @@ const router = createBrowserRouter([
         path: "/08",
         element: <PointBlob />
       },
+      // {
+      //   path: "/09",
+      //   element: <Dispersion />
+      // },
+      // {
+      //   path: "/10",
+      //   element: <TextOutline />
+      // },
+      // {
+      //   path: "/11",
+      //   element: <SpherePillards />
+      // }
       {
-        path: "/09",
-        element: <Dispersion />
+        path: "/12",
+        element: <Donut />
       },
-      {
-        path: "/10",
-        element: <TextOutline />
-      },
-      {
-        path: "/11",
-        element: <SpherePillards />
-      }
     ]
   }, 
 ])

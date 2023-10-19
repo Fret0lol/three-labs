@@ -1,10 +1,16 @@
 import {OrbitControls, PerspectiveCamera, SpotLight, useHelper, useTexture} from "@react-three/drei";
-import {useFrame, useThree} from "@react-three/fiber";
-import {useEffect, useRef} from "react";
-import { Object3D, SpotLightHelper, Vector3 } from "three";
+import {Canvas, useFrame} from "@react-three/fiber";
+import { useRef} from "react";
+import { Object3D, Vector3 } from "three";
 import { Bloom, DepthOfField, EffectComposer } from "@react-three/postprocessing"
 
 export default function Vaporwave() {
+	return <Canvas dpr={[1, 2]}>
+		<VaporwaveComponent />
+	</Canvas>
+}
+
+function VaporwaveComponent() {
 	const plane = useRef();
 	const plane2 = useRef();
   const spotlight = useRef()
@@ -39,7 +45,7 @@ export default function Vaporwave() {
 	return (
 		<>
 			<color attach={"background"} args={["#000000"]} />
-			<OrbitControls enableDamping />
+			{/* <OrbitControls enableDamping /> */}
 			<PerspectiveCamera makeDefault position={[0, 0.06, 1.1]} fov={75} near={0.01} far={20} />
 
 			<ambientLight intensity={100} />

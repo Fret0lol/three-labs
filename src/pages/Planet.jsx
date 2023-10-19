@@ -1,6 +1,6 @@
 import {useEffect, useRef} from "react";
 import {Depth, Fresnel, LayerMaterial} from "lamina";
-import {extend, useFrame, useThree} from "@react-three/fiber";
+import {Canvas, extend, useFrame, useThree} from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 
 import CustomLayer from "../CustomLayer";
@@ -10,12 +10,18 @@ import { Perf } from "r3f-perf";
 extend({CustomLayer});
 
 export default function Planet() {
+	return <Canvas camera={{ position: [0, 0, 7] }} dpr={[1, 2]}>
+		<PlanetComponent />
+	</Canvas>
+}
+
+function PlanetComponent() {
 	const materialRef = useRef();
 	const depthRef = useRef()
 	const fresnelRef = useRef()
 
-	const { camera } = useThree()
-	camera.position.set(0, 0, 7)
+	// const { camera } = useThree()
+	// camera.position.set(0, 0, 7)
 
 	useControls("Depth", {
 		colorA: { value: 'blue', onChange: (value) => {

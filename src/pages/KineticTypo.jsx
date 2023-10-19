@@ -1,14 +1,17 @@
 import { OrbitControls, useTexture } from "@react-three/drei";
-import { useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import { DoubleSide, NearestFilter, Vector3 } from "three";
 
 export default function KineticTypo() {
+  return <Canvas camera={{ position: [0, -5, 7]}} dpr={[1, 2]}>
+    <KineticTypoComponent />
+  </Canvas>
+}
+
+function KineticTypoComponent() {
 
   const mesh = useRef()
-
-  const { camera } = useThree()
-  camera.position.set(0, -5, 7)
 
   // Load the texture
   const texture = useTexture("./text.png")

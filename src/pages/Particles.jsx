@@ -1,9 +1,15 @@
 import { OrbitControls } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import { AdditiveBlending, MathUtils } from "three";
 
 export default function Particles() {
+  return <Canvas dpr={[1, 2]}>
+    <ParticlesComponent />
+  </Canvas>
+}
+
+function ParticlesComponent() {
   const points = useRef()
   const count = 4000
   const radius = 2.5

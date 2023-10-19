@@ -1,10 +1,16 @@
 import {OrbitControls, PerspectiveCamera} from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
 import {useEffect, useMemo, useRef} from "react";
 import {AdditiveBlending, Color} from "three";
 
 export default function PointBlob() {
+  return <Canvas camera={{ position: [ 0, 0, 10] }} dpr={[1, 2]}>
+    <PointBlobComponent />
+  </Canvas>
+}
+
+function PointBlobComponent() {
   const icosahedronGeometryRef = useRef()
   const materialRef = useRef()
 
